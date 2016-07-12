@@ -22,16 +22,13 @@ for i in range(delta.days + 1):
 
 data_array = ""
 
-for ii in range(len(datelist)):
+for ii in range(len(datelist)-1):
 #    link = 'http://www.nmdb.eu/nest/draw_graph.php?formchk=1&stations[]=KIEL' + \
     link = 'http://www.nmdb.eu/nest/draw_graph.php?formchk=1&allstations=1' + \
     '&output=ascii&force=1&tabchoice=revori&dtype=corr_for_efficiency&' + \
     'tresolution=5&date_choice=bydate&' + \
     'start_year=' + datelist[ii].strftime('%Y') + '&start_month=' + datelist[ii].strftime('%m') + '&start_day=' + datelist[ii].strftime('%d') + '&start_hour=' + '00' + '&start_min=' + '00' +'&' + \
     'end_year=' + datelist[ii+1].strftime('%Y') + '&end_month=' + datelist[ii+1].strftime('%m') + '&end_day=' + datelist[ii+1].strftime('%d') + '&end_hour=' + '23' + '&end_min=' + '59'  #right now start_time is 2012-09-30 00:00 #right now end_time is 2013-09-30 23:59
-
-    #'start_year=' + start_times[ii][0:4] + '&start_month=' + start_times[ii][4:6] + '&start_day=' + start_times[ii][6:8] + '&start_hour=' + '00' + '&start_min=' + '00' +'&' + \
-    #'end_year=' + end_times[ii][0:4] + '&end_month=' + end_times[ii][4:6] + '&end_day=' + end_times[ii][6:8] + '&end_hour=' + '23' + '&end_min=' + '59'  #right now start_time is 2012-09-30 00:00 #right now end_time is 2013-09-30 23:59
 
     page = requests.get(link)
     tree = html.fromstring(page.content)
@@ -49,32 +46,3 @@ f = open('NMDB_station_data.txt', 'w')
 f.write(stations)
 f.write(data_array)
 f.close()
-    
-
-
-#url = ''
-#values = {formchk=1
-#stations[]=KIEL
-#output=ascii
-#force=1
-#tabchoice=revori
-#dtype=corr_for_efficiency
-#tresolution=5
-#date_choice=bydate
-#start_year=2012
-#start_month=09
-#start_day=30
-#start_hour=00
-#start_min=00
-#end_year=2013
-#end_month=09
-#end_day=30
-#end_hour=23
-#end_min=59
-#}
-#
-#data = urllib.parse.urlencode(values)
-#data = data.encode('ascii') #data should be bytes
-#req = urllib.request.Request(rurl,data)
-#with urllib.request.urlopen(req) as response:
-#    the_page = response.read()
