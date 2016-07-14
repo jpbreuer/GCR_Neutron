@@ -27,7 +27,7 @@ STATIONS = 'AATB','APTY','ARNM','ATHN','BKSN','BURE','CALG','CALM','DOMB','DOMC'
 
 #STATIONS = 'THUL','YKTK'
 
-for jj in range(len(STATIONS)+1):
+for jj in range(len(STATIONS)):
     data_array = ""
     for ii in range(len(startindex)):
         #    link = 'http://www.nmdb.eu/nest/draw_graph.php?formchk=1&stations[]=KIEL' + \
